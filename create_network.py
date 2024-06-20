@@ -4,7 +4,6 @@ from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
 from qgis.core import QgsProject, QgsFeature, QgsGeometry, QgsPointXY, QgsVectorLayer, QgsField, QgsSpatialIndex, QgsLineSymbol, QgsPoint, QgsFeatureRequest
 from qgis.gui import QgsMapLayerComboBox, QgsMessageBar
-from PyQt5.QtCore import QVariant
 import processing
 
 # Initialize Qt resources from file resources.py
@@ -35,20 +34,12 @@ class CreateNetwork:
         # Declare instance attributes
         self.actions = []
         self.menu = self.tr(u'&Create Network')
-
-        # Initialize the dialog
-        self.dlg = CreateNetworkDialog()
-
-        # Check if plugin was started the first time in current QGIS session
-        # Must be set in initGui() to survive plugin reloads
-        self.first_start = None
+        self.first_start = True
 
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
-       
-        # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
+        """Get the translation for a string using Qt translation API."""
         return QCoreApplication.translate('CreateNetwork', message)
-
 
     def add_action(
         self,
@@ -61,7 +52,6 @@ class CreateNetwork:
         status_tip=None,
         whats_this=None,
         parent=None):
-        
 
         icon = QIcon(icon_path)
         action = QAction(icon, text, parent)
@@ -75,13 +65,10 @@ class CreateNetwork:
             action.setWhatsThis(whats_this)
 
         if add_to_toolbar:
-            # Adds plugin icon to Plugins toolbar
             self.iface.addToolBarIcon(action)
 
         if add_to_menu:
-            self.iface.addPluginToVectorMenu(
-                self.menu,
-                action)
+            self.iface.addPluginToVectorMenu(self.menu, action)
 
         self.actions.append(action)
 
@@ -89,42 +76,26 @@ class CreateNetwork:
 
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
-
         icon_path = ':/plugins/create_network/icon.png'
         self.add_action(
             icon_path,
             text=self.tr(u'Create Network'),
             callback=self.run,
             parent=self.iface.mainWindow())
-        
-        # will be set False in run()
-        self.first_start = True
-
-
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
-            self.iface.removePluginVectorMenu(
-                self.tr(u'&Create Network'),
-                action)
+            self.iface.removePluginVectorMenu(self.tr(u'&Create Network'), action)
             self.iface.removeToolBarIcon(action)
-
 
     def run(self):
         """Run method that performs all the real work"""
-
-        # Create the dialog with elements (after translation) and keep reference
-        # Only create GUI ONCE in callback, so that it will only load when the plugin is started
-        if self.first_start == True:
+        if self.first_start:
             self.first_start = False
-            self.dlg = CreateNetworkDialog()
-            
+            self.dlg = CreateNetworkDialog(self.iface)
 
-        # show the dialog
         self.dlg.show()
-        # Connect the build button to the network building function
-        
         result = self.dlg.exec_()
         if result:
             pass
