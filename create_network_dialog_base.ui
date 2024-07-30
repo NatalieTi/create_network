@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>424</width>
-    <height>339</height>
+    <width>400</width>
+    <height>363</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,94 +16,238 @@
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>10</y>
      <width>381</width>
-     <height>311</height>
+     <height>341</height>
     </rect>
    </property>
    <property name="currentIndex">
     <number>0</number>
    </property>
-   <widget class="QWidget" name="tab">
+   <widget class="QWidget" name="tab_7">
     <attribute name="title">
      <string>Create Network</string>
     </attribute>
-    <widget class="QComboBox" name="cmbBuild">
+    <widget class="QToolButton" name="btnImpRoads">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>191</width>
+       <x>340</x>
+       <y>60</y>
+       <width>27</width>
        <height>22</height>
       </rect>
      </property>
-     <item>
-      <property name="text">
-       <string>Select building layer</string>
-      </property>
-     </item>
+     <property name="text">
+      <string>...</string>
+     </property>
     </widget>
-    <widget class="QComboBox" name="cmbRoad">
+    <widget class="QToolButton" name="btnImpBuild">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>340</x>
+       <y>90</y>
+       <width>27</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>...</string>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="btnImpHeat">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>120</y>
+       <width>27</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>...</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineRoads">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
        <y>60</y>
        <width>191</width>
        <height>22</height>
       </rect>
      </property>
-     <item>
-      <property name="text">
-       <string>Select road layer</string>
-      </property>
-     </item>
     </widget>
-    <widget class="QPushButton" name="btnBuild">
+    <widget class="QLineEdit" name="lineBuildings">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>140</x>
+       <y>90</y>
+       <width>191</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineHeating">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>120</y>
+       <width>191</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
        <y>60</y>
-       <width>131</width>
+       <width>171</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Select roads layer:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>171</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Select buildings layer:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>120</y>
+       <width>171</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Select heating center layer:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>150</y>
+       <width>171</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Select path for project:</string>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="bntPath">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>150</y>
+       <width>27</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>...</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="linePath">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>150</y>
+       <width>191</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>190</y>
+       <width>351</width>
        <height>28</height>
       </rect>
      </property>
-     <property name="text">
-      <string>Building Connection</string>
+     <property name="font">
+      <font>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+       <underline>false</underline>
+       <strikeout>false</strikeout>
+       <stylestrategy>PreferDefault</stylestrategy>
+       <kerning>false</kerning>
+      </font>
      </property>
-    </widget>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>191</width>
-       <height>16</height>
-      </rect>
+     <property name="mouseTracking">
+      <bool>true</bool>
      </property>
-     <property name="text">
-      <string>Create building connection:</string>
+     <property name="tabletTracking">
+      <bool>true</bool>
      </property>
-    </widget>
-    <widget class="QLabel" name="label_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>140</y>
-       <width>191</width>
-       <height>16</height>
-      </rect>
+     <property name="acceptDrops">
+      <bool>false</bool>
      </property>
-     <property name="text">
-      <string>Create network:</string>
+     <property name="toolTip">
+      <string notr="true"/>
+     </property>
+     <property name="toolTipDuration">
+      <number>-1</number>
+     </property>
+     <property name="statusTip">
+      <string notr="true"/>
+     </property>
+     <property name="whatsThis">
+      <string notr="true"/>
+     </property>
+     <property name="accessibleName">
+      <string notr="true"/>
+     </property>
+     <property name="accessibleDescription">
+      <string notr="true"/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
+     <property name="inputMethodHints">
+      <set>Qt::ImhNone</set>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Ok</set>
+     </property>
+     <property name="centerButtons">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QPushButton" name="btnNetwork">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>200</y>
-       <width>131</width>
+       <x>10</x>
+       <y>270</y>
+       <width>351</width>
        <height>28</height>
       </rect>
      </property>
@@ -111,98 +255,110 @@
       <string>Network Connection</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="cmbNetwork">
+    <widget class="QPushButton" name="btnBuild">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>160</y>
-       <width>191</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="currentText">
-      <string>Select new lines layer</string>
-     </property>
-     <item>
-      <property name="text">
-       <string>Select new lines layer</string>
-      </property>
-     </item>
-    </widget>
-    <widget class="QComboBox" name="cmbRoad_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>190</y>
-       <width>191</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <item>
-      <property name="text">
-       <string>Select road layer</string>
-      </property>
-     </item>
-    </widget>
-    <widget class="QToolButton" name="btnStart">
-     <property name="geometry">
-      <rect>
-       <x>170</x>
-       <y>220</y>
-       <width>27</width>
-       <height>22</height>
+       <y>230</y>
+       <width>351</width>
+       <height>28</height>
       </rect>
      </property>
      <property name="text">
-      <string>...</string>
+      <string>Building Connection</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineStart">
+    <widget class="QLabel" name="logoLabel">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>220</y>
-       <width>151</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="cmbEnd">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>250</y>
-       <width>191</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <item>
-      <property name="text">
-       <string>Select end point layer</string>
-      </property>
-     </item>
-    </widget>
-    <widget class="QLineEdit" name="lineHeat">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>90</y>
-       <width>151</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QToolButton" name="btnHeat">
-     <property name="geometry">
-      <rect>
-       <x>170</x>
-       <y>90</y>
-       <width>27</width>
-       <height>22</height>
+       <y>10</y>
+       <width>351</width>
+       <height>41</height>
       </rect>
      </property>
      <property name="text">
-      <string>...</string>
+      <string/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab">
+    <attribute name="title">
+     <string>Change Topology</string>
+    </attribute>
+    <widget class="QListView" name="listFilter">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>100</y>
+       <width>351</width>
+       <height>161</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnSimplify">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>270</y>
+       <width>111</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Simplify</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnFilter">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>351</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Filter</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnBend">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>270</y>
+       <width>111</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Bend</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnManual">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>270</y>
+       <width>111</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Manual</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="logoLabel_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>341</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>
@@ -210,6 +366,200 @@
     <attribute name="title">
      <string>Calculate Diameter</string>
     </attribute>
+    <widget class="QPushButton" name="btnDn">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>210</y>
+       <width>181</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Calculate Diameter</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="logoLabel_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>341</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>70</y>
+       <width>191</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Density of the liquid:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>100</y>
+       <width>191</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Viscosity of the liquid:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_9">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>160</y>
+       <width>191</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Specific heat capacity:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_10">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>130</y>
+       <width>191</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Temperature difference:</string>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="dblSpinBox_Heat_Capacity">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>160</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="suffix">
+      <string> kJ/(kg·°C)</string>
+     </property>
+     <property name="decimals">
+      <number>3</number>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="dblSpinBox_Viscosity">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>100</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="suffix">
+      <string> Pas</string>
+     </property>
+     <property name="decimals">
+      <number>4</number>
+     </property>
+     <property name="minimum">
+      <double>0.000000000000000</double>
+     </property>
+     <property name="singleStep">
+      <double>0.000000000000000</double>
+     </property>
+     <property name="stepType">
+      <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+     </property>
+     <property name="value">
+      <double>0.000000000000000</double>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="dblSpinBox_Density">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>70</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
+     </property>
+     <property name="frame">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="buttonSymbols">
+      <enum>QAbstractSpinBox::UpDownArrows</enum>
+     </property>
+     <property name="keyboardTracking">
+      <bool>true</bool>
+     </property>
+     <property name="suffix">
+      <string> kg/m³</string>
+     </property>
+     <property name="decimals">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <double>1001.000000000000000</double>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnHeat_Loss">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>250</y>
+       <width>181</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Calculate Heat Loss</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spinBox_Temperature">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>130</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="suffix">
+      <string> °C</string>
+     </property>
+     <property name="prefix">
+      <string/>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>

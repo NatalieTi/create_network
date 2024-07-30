@@ -1,7 +1,7 @@
 import os.path
-from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication, QVariant
-from qgis.PyQt.QtGui import QIcon
-from qgis.PyQt.QtWidgets import QAction
+from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
+from qgis.PyQt.QtGui import QIcon, QPixmap
+from qgis.PyQt.QtWidgets import QAction, QLabel, QVBoxLayout, QDialogButtonBox, QDialog
 from qgis.core import QgsProject, QgsFeature, QgsGeometry, QgsPointXY, QgsVectorLayer, QgsField, QgsSpatialIndex, QgsLineSymbol, QgsPoint, QgsFeatureRequest
 from qgis.gui import QgsMapLayerComboBox, QgsMessageBar
 import processing
@@ -20,7 +20,7 @@ class CreateNetwork:
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
         # initialize locale
-        locale = QSettings().value('locale/userLocale')[0:2]
+        locale = str(QSettings().value('locale/userLocale'))[0:2]
         locale_path = os.path.join(
             self.plugin_dir,
             'i18n',
@@ -94,6 +94,30 @@ class CreateNetwork:
         if self.first_start:
             self.first_start = False
             self.dlg = CreateNetworkDialog(self.iface)
+
+            # Set the logo in the QLabel with the name 'logoLabel'
+            logo_label = self.dlg.findChild(QLabel, 'logoLabel')
+            if logo_label:
+                logo_pixmap = QPixmap(':/plugins/create_network/logo.png')
+                logo_label.setPixmap(logo_pixmap)
+            else:
+                print("Logo QLabel 'logoLabel' not found!")
+
+            # Set the logo in the QLabel with the name 'logoLabel_2'
+            logo_label_2 = self.dlg.findChild(QLabel, 'logoLabel_2')
+            if logo_label_2:
+                logo_pixmap_2 = QPixmap(':/plugins/create_network/logo.png')
+                logo_label_2.setPixmap(logo_pixmap_2)
+            else:
+                print("Logo QLabel 'logoLabel_2' not found!")
+
+            # Set the logo in the QLabel with the name 'logoLabel_3'
+            logo_label_3 = self.dlg.findChild(QLabel, 'logoLabel_3')
+            if logo_label_3:
+                logo_pixmap_3 = QPixmap(':/plugins/create_network/logo.png')
+                logo_label_3.setPixmap(logo_pixmap_3)
+            else:
+                print("Logo QLabel 'logoLabel_3' not found!")
 
         self.dlg.show()
         result = self.dlg.exec_()
