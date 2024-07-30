@@ -52,7 +52,7 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
         self.dblSpinBox_Heat_Capacity.valueChanged.connect(self.update_heat_capacity)
         self.btnHeat_Loss.clicked.connect(self.calculate_heat_loss)
         
-        # Connect the OK and Cancel buttons
+        # Connect the OK buttons
         self.buttonBox.button(QDialogButtonBox.Ok).clicked.connect(self.create_project_and_import_files)
 
         # Connect the Path button
