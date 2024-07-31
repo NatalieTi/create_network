@@ -19,6 +19,10 @@ FORM_CLASS, _ = uic.loadUiType(os.path.join(os.path.dirname(__file__), 'create_n
 
 class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
     def __init__(self, iface, parent=None):
+
+        """Initializes the dialog interface, connects buttons to their respective handlers, 
+        and sets up initial variables."""
+
         """Constructor."""
         super(CreateNetworkDialog, self).__init__(parent)
         self.setupUi(self)
@@ -51,6 +55,16 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
         self.spinBox_Temperature.valueChanged.connect(self.update_temperature_difference)
         self.dblSpinBox_Heat_Capacity.valueChanged.connect(self.update_heat_capacity)
         self.btnHeat_Loss.clicked.connect(self.calculate_heat_loss)
+        self.spinBox_t_f.valueChanged.connect(self.update_t_f)
+        self.spinBox_t_r.valueChanged.connect(self.update_t_r)
+        self.spinBox_t_s.valueChanged.connect(self.update_t_s)
+        self.dblSpinBox_lambda_s.valueChanged.connect(self.update_lambda_s)
+        self.dblSpinBox_lambda_i.valueChanged.connect(self.update_lambda_i)
+        self.dblSpinBox_lambda_g.valueChanged.connect(self.update_lambda_g)
+        self.dblSpinBox_C.valueChanged.connect(self.update_C)
+        self.dblSpinBox_Z.valueChanged.connect(self.update_Z)
+        self.dblSpinBox_R_0.valueChanged.connect(self.update_R_0)
+
         
         # Connect the OK buttons
         self.buttonBox.button(QDialogButtonBox.Ok).clicked.connect(self.create_project_and_import_files)
@@ -64,30 +78,52 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
         self.roads_file_path = None
         self.project_path = None
     
+    """Tab 1"""
+
     def open_file_dialog(self):
+
+        """Opens a file dialog for selecting a shapefile. 
+        Returns the selected file path."""
+
         options = QFileDialog.Options()
         file_path, _ = QFileDialog.getOpenFileName(self, "Select Shapefile", "", "Shapefiles (*.shp)", options=options)
         return file_path
 
     def select_buildings_file(self):
+
+        """Opens a file dialog to select a buildings shapefile. 
+        Updates the buildings file path and UI text field."""
+
         file_path = self.open_file_dialog()
         if file_path:
             self.buildings_file_path = file_path
             self.lineBuildings.setText(file_path)
 
     def select_heating_file(self):
+
+        """Opens a file dialog to select a heating centers shapefile. 
+        Updates the heating file path and UI text field."""
+
         file_path = self.open_file_dialog()
         if file_path:
             self.heating_file_path = file_path
             self.lineHeating.setText(file_path)
 
     def select_roads_file(self):
+
+        """Opens a file dialog to select a roads shapefile. 
+        Updates the roads file path and UI text field."""
+
         file_path = self.open_file_dialog()
         if file_path:
             self.roads_file_path = file_path
             self.lineRoads.setText(file_path)
 
     def select_project_path(self):
+
+        """Opens a directory dialog to select the project path. 
+        Updates the project path and UI text field."""
+
         options = QFileDialog.Options()
         directory = QFileDialog.getExistingDirectory(self, "Select Directory", "", options=options)
         if directory:
@@ -95,6 +131,11 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
             self.linePath.setText(directory)
 
     def create_project_and_import_files(self):
+
+        """Creates a new QGIS project and imports selected shapefiles into it. 
+        Sets the project CRS, creates layers, and applies predefined styles. 
+        Adds OSM Standard map layer and saves the project."""
+
         if not self.project_path:
             QMessageBox.critical(self, "Error", "Please select a path for the new project.")
             return
@@ -189,6 +230,10 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
             self.add_features_to_layer('Roads', self.roads_file_path)
     
     def apply_layer_style(self, layer, style_path):
+
+        """layer: The layer to which the style will be applied. style_path: Path to the QML style file. 
+        Applies a predefined QML style to the given layer."""
+
         qml_path = os.path.join(os.path.dirname(__file__), 'styles', style_path)
         if os.path.exists(qml_path):
             layer.loadNamedStyle(qml_path)
@@ -198,6 +243,10 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
 
 
     def add_features_to_layer(self, layer_name, shp_file_path):
+
+        """Adds features from a shapefile to an existing layer in the project. 
+        Transforms coordinates and ensures attributes are correctly set."""
+
         # Load the existing layer
         layer = QgsProject.instance().mapLayersByName(layer_name)[0]
     
@@ -240,12 +289,19 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
         self.zoom_to_layer_extent(layer)
 
     def zoom_to_layer_extent(self, layer):
+
+        """Zooms the map canvas to the extent of the given layer."""
+
         canvas = self.iface.mapCanvas()
         canvas.setExtent(layer.extent())
         canvas.refresh()
 
     
     def build_connection(self):
+        
+        """Builds connections between buildings and roads, creating a "Buildings connection" layer. 
+        Finds nearest road segments and creates lines connecting buildings to roads."""
+
         roads_layer = QgsProject.instance().mapLayersByName("Roads")[0]
         buildings_layer = QgsProject.instance().mapLayersByName("Buildings")[0]
         heat_layer = QgsProject.instance().mapLayersByName("Heating center")[0]
@@ -318,6 +374,11 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
         QMessageBox.information(self, "Success", "Buildings connection created successfully")
 
     def connect_network(self):
+
+        """Connects the network by snapping geometries and building a graph structure. 
+        Isolates the main component, removes small components, and creates a Steiner tree. 
+        Updates the "Network" layer with the Steiner tree edges and updates node attributes."""
+
         # Get layers by name from the project
         build_connection_layer = QgsProject.instance().mapLayersByName("Buildings connection")[0]
         roads_layer = QgsProject.instance().mapLayersByName("Roads")[0]
@@ -608,14 +669,14 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
 
         QMessageBox.information(self, "Success", "Network and nodes created successfully")
                                                                                                                              
-    
-    def clean_topology(self, layer):
-        """Clean the topology of a vector layer."""
-        params = {'INPUT': layer, 'OUTPUT': 'memory:'}
-        result = processing.run("native:fixgeometries", params)
-        return result['OUTPUT']
+    """Tab 2"""
 
     def filter_and_group_lines(self):
+
+        """Filters and groups lines in the network based on angle and length criteria.
+        Splits groups at intersections and merges groups by points.
+        Updates the list filter model with grouped lines."""
+
         def calculate_angle(line1, line2):
             x1, y1 = line1[0]
             x2, y2 = line1[1]
@@ -885,6 +946,9 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
         self.update_list_filter(final_groups, filtered_lines)
     
     def update_list_filter(self, line_groups, filtered_lines):
+
+        """Updates the list filter model with line groups and reasons for filtering."""
+
         self.list_filter_model.clear()
         self.final_groups = []
     
@@ -904,6 +968,9 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
                 group_number += 1
     
     def zoom_to_group(self, index):
+
+        """Zooms the map canvas to the selected group of lines."""
+
         item = self.list_filter_model.itemFromIndex(index)
         group_info = item.text().split(" ")
         group_index = int(group_info[1]) - 1
@@ -939,6 +1006,10 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
     
 
     def simplify_lines(self):
+
+        """Simplifies selected lines in the network to two points.
+        Merges geometries, deletes old features, and adds new simplified features."""
+
         if self.selected_group_index is None:
             QMessageBox.critical(self, "Error", "No group selected.")
             return
@@ -990,6 +1061,9 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
         QMessageBox.information(self, "Success", "Lines simplified successfully")
 
     def simplify_to_2_points(self, geom):
+
+        """Simplifies a line geometry to two points."""
+
         if geom.type() == QgsWkbTypes.LineGeometry:
             points = geom.asPolyline()
         elif geom.type() == QgsWkbTypes.MultiLineString:
@@ -1006,6 +1080,10 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
         return simplified_geom
     
     def bend_lines(self):
+
+        """Smooths selected lines in the network using Chaikin's algorithm.
+        Merges geometries, deletes old features, and adds new smoothed features."""
+
         if self.selected_group_index is None:
             QMessageBox.critical(self, "Error", "No group selected.")
             return
@@ -1057,6 +1135,9 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
         QMessageBox.information(self, "Success", "Lines bended successfully")
     
     def smooth_geometry(self, geom):
+
+        """Applies Chaikin's algorithm to smooth a line geometry."""
+
         if geom.type() == QgsWkbTypes.LineGeometry:
             points = geom.asPolyline()
         elif geom.type() == QgsWkbTypes.MultiLineString:
@@ -1088,6 +1169,9 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
         return smoothed_geom
     
     def chaikin_smooth(self, points, iterations=2):
+
+        """Applies Chaikin's algorithm to smooth a list of points."""
+
         for _ in range(iterations):
             new_points = []
             for i in range(len(points) - 1):
@@ -1101,6 +1185,9 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
         return points
     
     def show_manual_message(self):
+
+        """Displays a manual change message and sets the topology to manual."""
+
         QMessageBox.information(self, "Manual Change", "Please change the topology manually")
         line_layer = QgsProject.instance().mapLayersByName("Network")[0]
 
@@ -1146,24 +1233,78 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
         self.iface.mapCanvas().refresh()
         QMessageBox.information(self, "Success", "Topology set to manual")
 
+    """Tab 3"""
 
     def update_density(self, value):
+
+        """Updates the density value and prints the update."""
+
         self.density = value
         print(f"Density updated to: {self.density}")
 
     def update_viscosity(self, value):
+
+        """Updates the viscosity value and prints the update."""
+
         self.viscosity = value
         print(f"Viscosity updated to: {self.viscosity}")
 
     def update_temperature_difference(self, value):
+
+        """Updates the temperature difference value and prints the update."""
+
         self.temperature_difference = value
         print(f"Temperature difference updated to: {self.temperature_difference}")
 
     def update_heat_capacity(self, value):
+
+        """Updates the heat capacity value and prints the update."""
+
         self.Cp = value
         print(f"Heat capacity updated to: {self.Cp}")
+
+    def update_t_f(self, value):
+        self.t_f = value
+        print(f"Density updated to: {self.t_f}")
+
+    def update_t_r(self, value):
+        self.t_r = value
+        print(f"Density updated to: {self.t_r}")
+
+    def update_t_s(self, value):
+        self.t_s = value
+        print(f"Density updated to: {self.t_s}")
+
+    def update_lambda_s(self, value):
+        self.lambda_s = value
+        print(f"Density updated to: {self.lambda_s}")
+
+    def update_lambda_i(self, value):
+        self.lambda_i = value
+        print(f"Density updated to: {self.lambda_i}")
+
+    def update_lambda_g(self, value):
+        self.lambda_g = value
+        print(f"Density updated to: {self.lambda_g}")
+
+    def update_Z(self, value):
+        self.Z = value
+        print(f"Density updated to: {self.Z}")
+
+    def update_C(self, value):
+        self.C = value
+        print(f"Density updated to: {self.C}")
+
+    def update_R_0(self, value):
+        self.R_0 = value
+        print(f"Density updated to: {self.R_0}")
     
     def calculate_diameter(self):
+
+        """Calculates and updates the diameter (dn) for each line feature based on qs_kw.
+        Uses various hydraulic and thermal calculations to determine the appropriate pipe diameter.
+        Updates the dn attribute for each line feature in the network layer."""
+
         D = 0.62
         d = 0.8  # Example value, can be changed
 
@@ -1358,41 +1499,45 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
         QMessageBox.information(self, "Calculation Complete", "Diameters have been calculated successfully.")
 
     def calculate_heat_loss(self):
-        t_f = 90
-        t_r = 60
-        t_s = 10
-        lambda_s = 2
-        lambda_i = 0.03
-        lambda_g = 1
-        C = 0.5
+
+        """Calculates the heat loss for each line feature based on thermal properties and updates the Heat_Loss attribute.
+        Uses various thermal calculations to determine the heat loss coefficient and applies it to the network layer."""
+
+        # t_f = 90
+        # t_r = 60
+        # t_s = 10
+        # lambda_s = 2
+        # lambda_i = 0.03
+        # lambda_g = 1
+        # C = 0.5
         D_c = 300
         D_pur = 295
         d_0 = 166.7
-        Z = 1.5
-        R0 = 0.0685
+        # Z = 1.5
+        # R_0 = 0.0685
         H = 1
         D = 1
         r_i = 1
-        Zc = Z + (R0 * lambda_s)
-        omega = (lambda_i - lambda_g) / (lambda_i + lambda_g)
+        Zc = self.Z + (self.R_0 * self.lambda_s)
+        omega = (self.lambda_i - self.lambda_g) / (self.lambda_i + self.lambda_g)
 
         def calculate_insulane_of_the_soil():
-            Rs = (1 / (2 * math.pi * lambda_s)) * math.log((4 * Zc) / D_c)
+            Rs = (1 / (2 * math.pi * self.lambda_s)) * math.log((4 * Zc) / D_c)
             return Rs
         
         Rs = calculate_insulane_of_the_soil()
         print("Rs=", Rs)
 
         def calculate_insulane_of_the_insulation_material():
-            Ri = (1 / (2 * math.pi * lambda_i)) * math.log(D_pur / d_0)
+            Ri = (1 / (2 * math.pi * self.lambda_i)) * math.log(D_pur / d_0)
             return Ri
         
         Ri = calculate_insulane_of_the_insulation_material()
         print("Ri=", Ri)
 
         def insulance_of_the_heat_exchange_between_supply_and_return_pipe():
-            x = 2 * Zc / C
-            Rh = (1 / (4 * math.pi * lambda_s)) * math.log((x ** 2) + 1)
+            x = 2 * Zc / self.C
+            Rh = (1 / (4 * math.pi * self.lambda_s)) * math.log((x ** 2) + 1)
             return Rh
         
         Rh = insulance_of_the_heat_exchange_between_supply_and_return_pipe()
@@ -1408,8 +1553,8 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
         print(f"U1= '{U1}', U2= '{U2}'")
 
         def calculate_heat_loss():
-            Ff = (U1 * (t_f - t_s)) - (U2 * (t_r - t_s))
-            Fr = (U1 * (t_r - t_s)) - (U2 * (t_f - t_s))
+            Ff = (U1 * (self.t_f - self.t_s)) - (U2 * (self.t_r - self.t_s))
+            Fr = (U1 * (self.t_r - self.t_s)) - (U2 * (self.t_f - self.t_s))
             return Ff, Fr
         
         Ff, Fr = calculate_heat_loss()
@@ -1417,10 +1562,10 @@ class CreateNetworkDialog(QtWidgets.QDialog, FORM_CLASS):
 
         # def calculate_heat_loss_in_twin_pipes():
             # x = (r_i / (2 * D))
-            # y = ((omega * 2 * r_i * (D ** 3)) / ((R0 ** 4) * (D ** 4)))
-            # z = (2 * r_i * (R0 ** 2) * D) / ((R0 ** 4) - (D ** 4))
+            # y = ((omega * 2 * r_i * (D ** 3)) / ((R_0 ** 4) * (D ** 4)))
+            # z = (2 * r_i * (R_0 ** 2) * D) / ((R_0 ** 4) - (D ** 4))
 # 
-            # Hs = ((2 * lambda_i) / lambda_g) * math.log((2 * H) / R0) + math.log((R0 ** 2) / (2 * D * r_i)) + omega * math.log((R0 ** 4) / ((R0 ** 4) - (D ** 4))) - ((x - y) ** 2) / (1 + (x ** 2) + omega * (z ** 2))
+            # Hs = ((2 * lambda_i) / lambda_g) * math.log((2 * H) / R_0) + math.log((R_0 ** 2) / (2 * D * r_i)) + omega * math.log((R_0 ** 4) / ((R_0 ** 4) - (D ** 4))) - ((x - y) ** 2) / (1 + (x ** 2) + omega * (z ** 2))
             # return Hs
         # 
         # Hs = calculate_heat_loss_in_twin_pipes()

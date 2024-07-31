@@ -6,24 +6,54 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>363</height>
+    <width>397</width>
+    <height>483</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Create Network</string>
   </property>
   <widget class="QTabWidget" name="tabWidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
      <width>381</width>
-     <height>341</height>
+     <height>461</height>
     </rect>
    </property>
+   <property name="inputMethodHints">
+    <set>Qt::ImhNone</set>
+   </property>
+   <property name="tabPosition">
+    <enum>QTabWidget::North</enum>
+   </property>
+   <property name="tabShape">
+    <enum>QTabWidget::Rounded</enum>
+   </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
+   </property>
+   <property name="elideMode">
+    <enum>Qt::ElideNone</enum>
+   </property>
+   <property name="usesScrollButtons">
+    <bool>true</bool>
+   </property>
+   <property name="documentMode">
+    <bool>false</bool>
+   </property>
+   <property name="tabsClosable">
+    <bool>false</bool>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="tabBarAutoHide">
+    <bool>false</bool>
    </property>
    <widget class="QWidget" name="tab_7">
     <attribute name="title">
@@ -33,7 +63,7 @@
      <property name="geometry">
       <rect>
        <x>340</x>
-       <y>60</y>
+       <y>70</y>
        <width>27</width>
        <height>22</height>
       </rect>
@@ -46,7 +76,7 @@
      <property name="geometry">
       <rect>
        <x>340</x>
-       <y>90</y>
+       <y>100</y>
        <width>27</width>
        <height>22</height>
       </rect>
@@ -59,7 +89,7 @@
      <property name="geometry">
       <rect>
        <x>340</x>
-       <y>120</y>
+       <y>130</y>
        <width>27</width>
        <height>22</height>
       </rect>
@@ -72,7 +102,7 @@
      <property name="geometry">
       <rect>
        <x>140</x>
-       <y>60</y>
+       <y>70</y>
        <width>191</width>
        <height>22</height>
       </rect>
@@ -82,7 +112,7 @@
      <property name="geometry">
       <rect>
        <x>140</x>
-       <y>90</y>
+       <y>100</y>
        <width>191</width>
        <height>22</height>
       </rect>
@@ -92,7 +122,7 @@
      <property name="geometry">
       <rect>
        <x>140</x>
-       <y>120</y>
+       <y>130</y>
        <width>191</width>
        <height>22</height>
       </rect>
@@ -102,7 +132,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>60</y>
+       <y>70</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -115,7 +145,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>90</y>
+       <y>100</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -128,7 +158,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>120</y>
+       <y>130</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -141,7 +171,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>150</y>
+       <y>160</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -154,7 +184,7 @@
      <property name="geometry">
       <rect>
        <x>340</x>
-       <y>150</y>
+       <y>160</y>
        <width>27</width>
        <height>22</height>
       </rect>
@@ -167,10 +197,58 @@
      <property name="geometry">
       <rect>
        <x>140</x>
-       <y>150</y>
+       <y>160</y>
        <width>191</width>
        <height>22</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnNetwork">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>300</y>
+       <width>351</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Network Connection</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnBuild">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>260</y>
+       <width>351</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Building Connection</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="logoLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>351</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
+     </property>
+     <property name="lineWidth">
+      <number>0</number>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
     <widget class="QDialogButtonBox" name="buttonBox">
@@ -180,7 +258,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>190</y>
+       <y>200</y>
        <width>351</width>
        <height>28</height>
       </rect>
@@ -242,45 +320,6 @@
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="btnNetwork">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>270</y>
-       <width>351</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Network Connection</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btnBuild">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>230</y>
-       <width>351</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Building Connection</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="logoLabel">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>351</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
    </widget>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -292,7 +331,7 @@
        <x>10</x>
        <y>100</y>
        <width>351</width>
-       <height>161</height>
+       <height>201</height>
       </rect>
      </property>
     </widget>
@@ -300,7 +339,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>270</y>
+       <y>310</y>
        <width>111</width>
        <height>28</height>
       </rect>
@@ -326,7 +365,7 @@
      <property name="geometry">
       <rect>
        <x>130</x>
-       <y>270</y>
+       <y>310</y>
        <width>111</width>
        <height>28</height>
       </rect>
@@ -339,7 +378,7 @@
      <property name="geometry">
       <rect>
        <x>250</x>
-       <y>270</y>
+       <y>310</y>
        <width>111</width>
        <height>28</height>
       </rect>
@@ -357,6 +396,15 @@
        <height>41</height>
       </rect>
      </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
+     </property>
+     <property name="lineWidth">
+      <number>0</number>
+     </property>
      <property name="text">
       <string/>
      </property>
@@ -370,7 +418,7 @@
      <property name="geometry">
       <rect>
        <x>90</x>
-       <y>210</y>
+       <y>160</y>
        <width>181</width>
        <height>28</height>
       </rect>
@@ -387,6 +435,15 @@
        <width>341</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
+     </property>
+     <property name="lineWidth">
+      <number>0</number>
      </property>
      <property name="text">
       <string/>
@@ -409,7 +466,7 @@
      <property name="geometry">
       <rect>
        <x>50</x>
-       <y>100</y>
+       <y>90</y>
        <width>191</width>
        <height>21</height>
       </rect>
@@ -422,7 +479,7 @@
      <property name="geometry">
       <rect>
        <x>50</x>
-       <y>160</y>
+       <y>130</y>
        <width>191</width>
        <height>21</height>
       </rect>
@@ -435,7 +492,7 @@
      <property name="geometry">
       <rect>
        <x>50</x>
-       <y>130</y>
+       <y>110</y>
        <width>191</width>
        <height>21</height>
       </rect>
@@ -448,7 +505,7 @@
      <property name="geometry">
       <rect>
        <x>190</x>
-       <y>160</y>
+       <y>130</y>
        <width>121</width>
        <height>22</height>
       </rect>
@@ -467,7 +524,7 @@
      <property name="geometry">
       <rect>
        <x>190</x>
-       <y>100</y>
+       <y>90</y>
        <width>121</width>
        <height>22</height>
       </rect>
@@ -522,7 +579,7 @@
       <string> kg/m³</string>
      </property>
      <property name="decimals">
-      <number>1</number>
+      <number>0</number>
      </property>
      <property name="maximum">
       <double>1001.000000000000000</double>
@@ -532,7 +589,7 @@
      <property name="geometry">
       <rect>
        <x>90</x>
-       <y>250</y>
+       <y>390</y>
        <width>181</width>
        <height>28</height>
       </rect>
@@ -545,7 +602,7 @@
      <property name="geometry">
       <rect>
        <x>190</x>
-       <y>130</y>
+       <y>110</y>
        <width>121</width>
        <height>22</height>
       </rect>
@@ -559,7 +616,366 @@
      <property name="prefix">
       <string/>
      </property>
+     <property name="maximum">
+      <number>200</number>
+     </property>
     </widget>
+    <widget class="QLabel" name="label_11">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>200</y>
+       <width>191</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Flow temperature:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_12">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>220</y>
+       <width>191</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Return temperature:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_13">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>240</y>
+       <width>191</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Soil temperature:</string>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="dblSpinBox_lambda_s">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>260</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="suffix">
+      <string> W/(m·K)</string>
+     </property>
+     <property name="decimals">
+      <number>1</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_14">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>260</y>
+       <width>191</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Thermal conductivity for wet soil:</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spinBox_t_s">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>240</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="suffix">
+      <string> °C</string>
+     </property>
+     <property name="prefix">
+      <string/>
+     </property>
+     <property name="maximum">
+      <number>200</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_15">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>280</y>
+       <width>191</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Thermal conductivity of insulation:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_16">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>300</y>
+       <width>231</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Thermal conductivity of ground:</string>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="dblSpinBox_lambda_i">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>280</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="suffix">
+      <string> W/(m·K)</string>
+     </property>
+     <property name="decimals">
+      <number>1</number>
+     </property>
+     <property name="minimum">
+      <double>0.000000000000000</double>
+     </property>
+     <property name="maximum">
+      <double>200.000000000000000</double>
+     </property>
+     <property name="singleStep">
+      <double>0.000000000000000</double>
+     </property>
+     <property name="stepType">
+      <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+     </property>
+     <property name="value">
+      <double>0.000000000000000</double>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="dblSpinBox_C">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>320</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="suffix">
+      <string> m</string>
+     </property>
+     <property name="decimals">
+      <number>1</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_17">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>320</y>
+       <width>231</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Distance between two pipes:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_18">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>340</y>
+       <width>231</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Depth:</string>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="dblSpinBox_Z">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>340</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="suffix">
+      <string> m</string>
+     </property>
+     <property name="decimals">
+      <number>1</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_19">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>360</y>
+       <width>231</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Ground-to-air transition insulance:</string>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="dblSpinBox_R_0">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>360</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="suffix">
+      <string> m²·K/W</string>
+     </property>
+     <property name="decimals">
+      <number>4</number>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="dblSpinBox_lambda_g">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>300</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="suffix">
+      <string> W/(m·K)</string>
+     </property>
+     <property name="decimals">
+      <number>1</number>
+     </property>
+     <property name="minimum">
+      <double>0.000000000000000</double>
+     </property>
+     <property name="maximum">
+      <double>200.000000000000000</double>
+     </property>
+     <property name="singleStep">
+      <double>0.000000000000000</double>
+     </property>
+     <property name="stepType">
+      <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+     </property>
+     <property name="value">
+      <double>0.000000000000000</double>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spinBox_t_r">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>220</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="suffix">
+      <string> °C</string>
+     </property>
+     <property name="prefix">
+      <string/>
+     </property>
+     <property name="maximum">
+      <number>200</number>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spinBox_t_f">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>200</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="suffix">
+      <string> °C</string>
+     </property>
+     <property name="prefix">
+      <string/>
+     </property>
+     <property name="maximum">
+      <number>200</number>
+     </property>
+    </widget>
+    <zorder>spinBox_t_f</zorder>
+    <zorder>spinBox_t_r</zorder>
+    <zorder>btnDn</zorder>
+    <zorder>logoLabel_3</zorder>
+    <zorder>dblSpinBox_Heat_Capacity</zorder>
+    <zorder>dblSpinBox_Viscosity</zorder>
+    <zorder>dblSpinBox_Density</zorder>
+    <zorder>btnHeat_Loss</zorder>
+    <zorder>spinBox_Temperature</zorder>
+    <zorder>dblSpinBox_lambda_s</zorder>
+    <zorder>spinBox_t_s</zorder>
+    <zorder>label_7</zorder>
+    <zorder>label_11</zorder>
+    <zorder>label_8</zorder>
+    <zorder>label_10</zorder>
+    <zorder>label_12</zorder>
+    <zorder>label_13</zorder>
+    <zorder>label_9</zorder>
+    <zorder>dblSpinBox_lambda_i</zorder>
+    <zorder>dblSpinBox_C</zorder>
+    <zorder>label_15</zorder>
+    <zorder>label_14</zorder>
+    <zorder>label_16</zorder>
+    <zorder>label_17</zorder>
+    <zorder>label_18</zorder>
+    <zorder>dblSpinBox_Z</zorder>
+    <zorder>label_19</zorder>
+    <zorder>dblSpinBox_R_0</zorder>
+    <zorder>dblSpinBox_lambda_g</zorder>
    </widget>
   </widget>
  </widget>
